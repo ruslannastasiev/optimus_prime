@@ -1,11 +1,18 @@
 OptimusPrime::Application.routes.draw do
 
-  root :to => "users#new"
+  get "home" => "pages#home", :as => "home"
+  get "contact" => "pages#contact", :as => "contact"
+  get "profile" => "pages#profile", :as => "profile"
+
+  
+
+  root :to => "pages#home"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
 
-  resources :users
+
+  #resources :users
   resources :sessions
 
 
