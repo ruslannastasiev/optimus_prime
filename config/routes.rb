@@ -14,6 +14,7 @@ OptimusPrime::Application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :microposts
 
 
   # The priority is based upon order of creation:
