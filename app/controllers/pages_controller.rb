@@ -1,5 +1,10 @@
 class PagesController < ApplicationController
-  def home
+
+  def home    
+    if current_user
+      @micropost = Micropost.new
+      @feed_items = Micropost.scoped.paginate(:page => params[:page])
+    end
   end
 
   def contact
@@ -8,3 +13,4 @@ class PagesController < ApplicationController
   def profile
   end
 end
+
