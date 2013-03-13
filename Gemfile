@@ -8,8 +8,10 @@ gem 'rails', '3.2.12'
 gem 'mysql2'
 
 gem 'json'
+gem 'gravatar_image_tag', '1.0.0.pre2'
 
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'will_paginate', '~> 3.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,6 +27,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :development do
+  gem 'faker', '0.3.1'
+end
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
