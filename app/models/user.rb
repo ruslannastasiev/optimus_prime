@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation
-  
+
+  attr_accessible :email, :password, :password_confirmation  
   attr_accessor :password
   before_save :encrypt_password
+
+  has_many :microposts, :dependent => :destroy
   
   validates_uniqueness_of :email
   validates_confirmation_of :password
@@ -24,5 +26,11 @@ class User < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
+
+  def feed
+    #Micropost.scoped
+  end
+
 end
 
