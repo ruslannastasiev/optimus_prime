@@ -1,29 +1,22 @@
-<h2>
-  <%= gravatar_for @user %>
-  <%= @user.email %>
-</h2>
-
-
-<% unless @user.microposts.empty? %>
-  <table>
-    <%= render @microposts %>
-  </table>
-  <%= will_paginate @microposts %>
-<% end %>
-
 <%- model_class = Championship -%>
-
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
 <table class="table table-striped">
   <thead>
-    <tr>      
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @championships.each do |championship| %>
-      <tr>        
-        <td><%= link_to championship.name, championship_path(championship) %></td>
+      <tr>
+        <td><%= link_to championship.id, championship_path(championship) %></td>
+        <td><%= championship.name %></td>
+        <td><%=l championship.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_championship_path(championship), :class => 'btn btn-mini' %>

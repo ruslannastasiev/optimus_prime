@@ -1,5 +1,8 @@
 OptimusPrime::Application.routes.draw do
 
+  resources :championships
+
+
   get "home" => "pages#home", :as => "home"
   get "contact" => "pages#contact", :as => "contact"
   get "profile" => "pages#profile", :as => "profile"
