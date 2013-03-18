@@ -1,10 +1,14 @@
 OptimusPrime::Application.routes.draw do
 
+  resources :pages
+
+
   get "home" => "pages#home", :as => "home"
   get "contact" => "pages#contact", :as => "contact"
   get "profile" => "pages#profile", :as => "profile"
+  #get ':id', to: 'pages#show', as: :page
 
-  
+
 
   root :to => "pages#home"
   get "log_out" => "sessions#destroy", :as => "log_out"
