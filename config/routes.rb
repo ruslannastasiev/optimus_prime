@@ -1,6 +1,7 @@
 OptimusPrime::Application.routes.draw do
 
   resources :pages
+  resources :championships
 
 
   get "home" => "pages#home", :as => "home"
