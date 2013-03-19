@@ -1,11 +1,17 @@
 <%- model_class = Page -%>
 <div class="page-header">
-  <h1><%= @page.name if @page %></h1>
+  <h1><%= @page.name %></h1>
 </div>
 
-<%= simple_format @page.content if @page %>
+<%= simple_format @page.content %>
+<% if @page.widgets.present? %>
+  <div class="row">
+    <div class="span4">
+      <%= render @widgets %>
+    </div>  
+  </div>  
+<% end %>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              pages_path, :class => 'btn'  %>
+  <%= link_to t('.back', :default => t("helpers.links.back")), pages_path, :class => 'btn'  %>
 </div>
