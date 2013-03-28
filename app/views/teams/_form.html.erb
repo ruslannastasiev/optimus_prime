@@ -1,0 +1,7 @@
+<%= form_for ([@championship, @team]) do |f| %>
+  <p>
+    <%= f.label :name, 'Name' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
