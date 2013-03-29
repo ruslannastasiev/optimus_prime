@@ -9,8 +9,6 @@ OptimusPrime::Application.routes.draw do
   get "home" => "pages#home", :as => "home"
   get "contact" => "pages#contact", :as => "contact"
   get "profile" => "pages#profile", :as => "profile"
-  #get ':id', to: 'pages#show', as: :page
-
 
 
   root :to => "pages#home"
@@ -22,6 +20,8 @@ OptimusPrime::Application.routes.draw do
   resources :users
   resources :sessions
   resources :microposts
+  resources :widgets
+
 
 
 
