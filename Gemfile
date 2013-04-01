@@ -1,20 +1,28 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem "carrierwave"
+gem "mini_magick"
 gem 'json'
 gem 'gravatar_image_tag', '1.0.0.pre2'
-
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'will_paginate', '~> 3.0'
 
+
 # Gems used only for assets and not required
 # in production environments by default.
+
+
+
+group :test, :developer do
+  gem 'rspec-rails'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -34,7 +42,11 @@ group :development do
   gem 'binding_of_caller'
 end
 
-
+group :test do  
+  gem "capybara", "~> 2.1.0"
+  gem "database_cleaner", "~> 0.9.1"
+  gem "factory_girl", "~> 4.2.0"
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
