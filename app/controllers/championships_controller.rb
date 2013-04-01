@@ -1,6 +1,7 @@
 class ChampionshipsController < ApplicationController
   # GET /championships
   # GET /championships.json
+  
   def index
     @championships = Championship.all
 
@@ -14,8 +15,8 @@ class ChampionshipsController < ApplicationController
   # GET /championships/1.json
   def show
     @championship = Championship.find(params[:id])
-    @teams = @championship.teams.paginate(page: params[:page])   
-    
+    @teams = @championship.teams.paginate(page: params[:page])
+      
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @championship }

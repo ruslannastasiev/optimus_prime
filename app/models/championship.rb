@@ -4,6 +4,6 @@ class Championship < ActiveRecord::Base
   belongs_to :user
   has_many :teams, dependent: :destroy
   validates :name, presence: true, length: { maximum: 100 }
-  validates :user_id, presence: true
+  validates :user_id, presence: true  
 
 end

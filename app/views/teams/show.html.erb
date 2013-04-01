@@ -1,2 +1,7 @@
 <%= @team.name %><br />
 <%= @team.id %>
+
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              @championship, :class => 'btn'  %>
