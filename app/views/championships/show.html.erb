@@ -1,4 +1,6 @@
 <%- model_class = Championship -%>
+<%- model_class = Score -%>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
@@ -21,8 +23,36 @@
   </tr>
 <% end %>
 </table>
-
 <%= link_to "new", new_championship_team_path(@championship, @team) %>
+<br>
+<br>
+<table class="table table-bordered">
+  <thead>
+  <tr><th>&nbsp;</th>
+    <% @teams.each do |home_team| %>
+    <th class="vertical"><%= home_team.name %></th>
+    <% end %>    
+  </tr>
+  <% @teams.each do |guest_team| %>
+  <tr>
+  </thead>
+    <th><%= guest_team.name %></th>
+    <% @teams.each do |home_team| %>
+      <%if home_team == guest_team %>
+        <td style="background: #F9F9F9"></td>
+      <% else %>
+        <td>                    
+          <% score = home_team.team1_scores.detect { |s| s.team2_id == guest_team.id} %>            
+          <% unless score %>
+            <% score =  Score.new team1_id: home_team.id, team2_id: guest_team.id %>             
+          <% end %>
+          <%= render 'scores/form', score: score %>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
