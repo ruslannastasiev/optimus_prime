@@ -54,6 +54,38 @@
   <% end %>
 </table>
 
+<table class="table table-bordered">
+  <caption>League Table</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>P</th>
+      <th>Won</th>
+      <th>Drawn</th>
+      <th>Lost</th>
+      <th>Goals For</th>
+      <th>Goals Against</th>
+      <th>GD</th>
+      <th>Pts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.team1_scores.count + team.team2_scores.count %></td>
+      <td></td>
+      <td>Drawn</td>
+      <td>Lost</td>
+      <td><%= team.goal_for %></td>
+      <td><%= team.goal_against %></td>
+      <td><%= team.goal_for - team.goal_against %></td>
+      <td>Pts</td>
+    </tr>
+    <% end %>
+  </tbody>  
+</table>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               current_user, :class => 'btn'  %>
