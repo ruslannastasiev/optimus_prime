@@ -15,7 +15,7 @@ class ChampionshipsController < ApplicationController
   # GET /championships/1.json
   def show
     @championship = Championship.find(params[:id])
-    @teams = @championship.teams.paginate(page: params[:page])
+    @teams = @championship.teams.includes(:team1_scores, :team2_scores)
       
     respond_to do |format|
       format.html # show.html.erb
