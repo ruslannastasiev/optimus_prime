@@ -70,17 +70,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @teams.each do |team| %>
+    <% @teams.sort_by{|t| -t.points}.each do |team| %>
     <tr>
       <td><%= team.name %></td>
-      <td><%= team.team1_scores.count + team.team2_scores.count %></td>
-      <td></td>
-      <td>Drawn</td>
-      <td>Lost</td>
+      <td><%= team.team1_scores.count + team.team2_scores.count %></td>      
+      <td><%= team.won %></td>
+      <td><%= team.drawn %></td>
+      <td><%= team.lost %></td>
       <td><%= team.goal_for %></td>
       <td><%= team.goal_against %></td>
       <td><%= team.goal_for - team.goal_against %></td>
-      <td>Pts</td>
+      <td><%= team.points %></td>
     </tr>
     <% end %>
   </tbody>  

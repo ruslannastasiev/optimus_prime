@@ -1,6 +1,5 @@
 class Team < ActiveRecord::Base
-  attr_accessible :name
-  attr_reader :won, :lost, :drawn
+  attr_accessible :name  
 
   belongs_to :championship
   has_many :team1_scores, class_name: 'Score', foreign_key: :team1_id
@@ -11,11 +10,28 @@ class Team < ActiveRecord::Base
 
 
   def goal_for
-    team1_scores.sum(&:team1_score) + team2_scores.sum(&:team2_score)     
+    @goal_for ||= team1_scores.sum(&:team1_score) + team2_scores.sum(&:team2_score)     
   end
 
   def goal_against
-    team1_scores.sum(&:team2_score) + team2_scores.sum(&:team1_score)        
+    @goal_against ||= team1_scores.sum(&:team2_score) + team2_scores.sum(&:team1_score)        
   end
   
+  def won    
+    @won ||= (team1_scores.to_a.count {|s| s.team1_score > s.team2_score}) + (team2_scores.to_a.count {|s| s.team2_score > s.team1_score})
+  end
+
+  def lost    
+    @lost ||= (team1_scores.to_a.count {|s| s.team1_score < s.team2_score}) + (team2_scores.to_a.count {|s| s.team2_score < s.team1_score})
+  end
+
+  def drawn    
+    @drawn ||= (team1_scores.to_a.count {|s| s.team1_score == s.team2_score}) + (team2_scores.to_a.count {|s| s.team2_score == s.team1_score})
+  end
+
+  def points
+    @points ||= won*3 + drawn
+  end
+  
+
 end
