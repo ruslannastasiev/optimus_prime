@@ -1,4 +1,6 @@
 <%- model_class = Championship -%>
+<%- model_class = Score -%>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
@@ -15,14 +17,74 @@
 <% @teams.each do |team| %>
   <tr>
     <td><%= team.name %></td>
-    <td><%= team.id %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td><%= image_tag team.logo_url if team.logo? %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td><%= link_to 'Show', [@championship, team] %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td><%= link_to "Edit", [:edit, @championship, team] %></td>
   </tr>
 <% end %>
 </table>
-
 <%= link_to "new", new_championship_team_path(@championship, @team) %>
+<br>
+<br>
+<table class="table table-bordered">
+  <thead>
+  <tr><th>&nbsp;</th>
+    <% @teams.each do |home_team| %>
+    <th class="vertical"><%= home_team.name %></th>
+    <% end %>    
+  </tr>
+  <% @teams.each do |guest_team| %>
+  <tr>
+  </thead>
+    <th><%= guest_team.name %></th>
+    <% @teams.each do |home_team| %>
+      <%if home_team == guest_team %>
+        <td style="background: #F9F9F9"></td>
+      <% else %>
+        <td>                    
+          <% score = home_team.team1_scores.detect { |s| s.team2_id == guest_team.id} %>            
+          <% unless score %>
+            <% score =  Score.new team1_id: home_team.id, team2_id: guest_team.id %>             
+          <% end %>
+          <%= render 'scores/form', score: score %>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
+<table class="table table-bordered">
+  <caption>League Table</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>P</th>
+      <th>Won</th>
+      <th>Drawn</th>
+      <th>Lost</th>
+      <th>Goals For</th>
+      <th>Goals Against</th>
+      <th>GD</th>
+      <th>Pts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.sort_by{|t| -t.points}.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.team1_scores.count + team.team2_scores.count %></td>      
+      <td><%= team.won %></td>
+      <td><%= team.drawn %></td>
+      <td><%= team.lost %></td>
+      <td><%= team.goal_for %></td>
+      <td><%= team.goal_against %></td>
+      <td><%= team.goal_for - team.goal_against %></td>
+      <td><%= team.points %></td>
+    </tr>
+    <% end %>
+  </tbody>  
+</table>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

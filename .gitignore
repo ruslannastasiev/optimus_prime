@@ -13,6 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/public/uploads
 .Gemfile~
 optimus_prime.sublime-project
 optimus_prime.sublime-workspace
