@@ -8,7 +8,7 @@ class Team < ActiveRecord::Base
   has_many :team2_scores, class_name: 'Score', foreign_key: :team2_id
 
   validates :name, presence: true, length: { maximum: 100 }
-  validates :championship_id, presence: true
+  validates :championship, presence: true
 
 
   def goal_for
