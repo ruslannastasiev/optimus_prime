@@ -1,7 +1,7 @@
 <%= form_for score do |f| %>
   <%= f.hidden_field :team1_id %>
   <%= f.hidden_field :team2_id %>
-  <%= f.text_field :team1_score, :class => 'input-small' %>
-  <%= f.text_field :team2_score, :class => 'input-small' %>
-  <p><%= f.submit "Submit" %></p>
+  <%= f.text_field :team1_score, :class => 'input-small', :id => "#{score.team1_id}-#{score.team2_id}-home" %>
+  <%= f.text_field :team2_score, :class => 'input-small', :id => "#{score.team2_id}-#{score.team1_id}-guest" %>
+  <p><%= f.submit "Submit", :id => "#{score.team1_id}-#{score.team2_id}-home-#{score.team2_id}-#{score.team1_id}-guest" %></p>
 <% end %>

@@ -17,8 +17,6 @@ gem 'will_paginate', '~> 3.0'
 # Gems used only for assets and not required
 # in production environments by default.
 
-
-
 group :test, :developer do
   gem 'rspec-rails'
 end
@@ -46,6 +44,7 @@ group :test do
   gem "capybara", "~> 2.1.0"
   gem "database_cleaner", "~> 0.9.1"
   gem "factory_girl", "~> 4.2.0"
+  gem "shoulda-matchers"  
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
