@@ -7,6 +7,6 @@ class Widget < ActiveRecord::Base
                    length:     { maximum: 30 },
                    uniqueness: { case_sensitive: false }
   validates :content, presence: true
-  validates :page_id, presence: true
+  validates :page, presence: true
 
 end

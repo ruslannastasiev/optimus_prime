@@ -66,6 +66,8 @@ module OptimusPrime
     config.assets.version = '1.0'
 
     config.generators do |g|
+      g.integration_tool :rspec
+      g.test_framework :rspec
       g.stylesheets false
       g.assets false
       g.helper false

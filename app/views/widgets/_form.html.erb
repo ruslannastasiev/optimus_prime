@@ -1,4 +1,7 @@
 <%= form_for @widget, :html => { :class => 'form-horizontal' } do |f| %>
+<% @widget.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
