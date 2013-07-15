@@ -20,8 +20,7 @@ FactoryGirl.define do
   end
 
   factory :micropost do 
-    content      "this is micropost"
-    #user      "1"
+    content      "this is micropost"    
   end
 
   factory :page do
@@ -32,8 +31,12 @@ FactoryGirl.define do
 
   factory :widget do |widget|
     name        "test widget"
-    content     "content of test widget"
-    #page
+    content     "content of test widget"    
   end
 
+  factory :season do 
+    sequence(:start_date) {|n| "201 #{n}"}
+    description  "uachamp"    
+  end
+  
 end

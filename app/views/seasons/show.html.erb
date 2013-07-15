@@ -1,0 +1,30 @@
+<%= @season.start_date %><br />
+<b><%= @season.description %></b>
+<%= s = @season.scores.count/(@season.scores.count/(@season.championship.teams.count/2)) %>
+
+<table class="table table-bordered">
+  <tr>
+    <th>team1</th>
+    <th>team2</th>
+    <th> Scores</th>
+  </tr>
+  <%= i = 1 %>
+    <% @scores.sort_by{|t| t.round}.each do |score| %>    
+    <tr>
+      <% if (((i-1) % s) == 0) %>
+        <tr><td style="background: #F9F9F9" colspan = 3><%= score.round %></td><tr>
+      <% end %> 
+      <td><%= score.team1.name %></td>
+      <td><%= score.team2.name %></td>
+      <% unless ((score.team1.name == "no oponent") || (score.team2.name == "no oponent")) %>
+        <td><%= render 'scores/form', score: score %></td> 
+        <% else %>
+        <td></td>
+      <% end %>               
+    </tr>
+    <% i = i+1 %>
+  <% end %>
+</table>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              @championship, :class => 'btn'  %>
