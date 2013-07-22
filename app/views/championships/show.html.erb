@@ -12,6 +12,22 @@
 
 <table>
   <tr>
+    <th>start date</th>
+  </tr>  
+  <% @seasons.each do |season| %>
+  <tr>
+    <td><%= season.start_date %></td>
+    <td><%= link_to 'Show', [@championship, season] %>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+  <% end %>  
+</table>
+<%= link_to "new season", new_championship_season_path(@championship, @season) %>
+<br />
+<br />
+<br />
+
+<table>
+  <tr>
     <th>name</th>
   </tr>
 <% @teams.each do |team| %>

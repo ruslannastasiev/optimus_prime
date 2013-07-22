@@ -37,7 +37,8 @@ gem 'jquery-rails'
 group :development do
   gem 'faker', '0.3.1'
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'binding_of_caller'  
+  gem 'debugger' 
 end
 
 group :test do  
