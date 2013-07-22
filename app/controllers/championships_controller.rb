@@ -16,7 +16,8 @@ class ChampionshipsController < ApplicationController
   def show
     @championship = Championship.find(params[:id])
     @teams = @championship.teams.includes(:team1_scores, :team2_scores)
-      
+    @seasons = @championship.seasons
+    #@seasons = @championship.seasons  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @championship }
@@ -42,8 +43,7 @@ class ChampionshipsController < ApplicationController
   # POST /championships
   # POST /championships.json
   def create
-    @championship = current_user.championships.build(params[:championship])
-
+    @championship = current_user.championships.build(params[:championship])    
     respond_to do |format|
       if @championship.save
         format.html { redirect_to @championship, notice: 'Championship was successfully created.' }

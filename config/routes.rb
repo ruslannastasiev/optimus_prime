@@ -3,6 +3,7 @@ OptimusPrime::Application.routes.draw do
   resources :pages
   resources :championships do
     resources :teams
+    resources :seasons
   end
 
 
@@ -22,6 +23,7 @@ OptimusPrime::Application.routes.draw do
   resources :microposts
   resources :widgets
   resources :scores
+
 
 
   # The priority is based upon order of creation:
